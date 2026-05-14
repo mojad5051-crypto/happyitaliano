@@ -28,8 +28,8 @@ body {
   background-color: #faf5f0;
   background-image: linear-gradient(rgba(255, 255, 255, 0.24), rgba(255, 250, 245, 0.20)), url('food-background.jpg');
   background-repeat: no-repeat;
-  background-position: top center;
-  background-size: 100% auto;
+  background-position: center center;
+  background-size: cover;
   background-attachment: scroll;
   background-blend-mode: normal;
   min-height: 100vh;
@@ -38,8 +38,8 @@ body {
 
 @media (max-width: 960px) {
   body {
-    background-position: top center;
-    background-size: 100% auto;
+    background-position: center top;
+    background-size: cover;
     background-attachment: scroll;
   }
 }
