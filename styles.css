@@ -29,7 +29,7 @@ body {
   background-image: url('food-background.jpg');
   background-repeat: no-repeat;
   background-position: top center;
-  background-size: 25vw auto;
+  background-size: 22vw auto;
   background-attachment: scroll;
   color: var(--text);
 }
