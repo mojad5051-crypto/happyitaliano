@@ -25,7 +25,10 @@ html {
 body {
   margin: 0;
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 50, 100, 0.5)), url('food-background.jpg') no-repeat center center;
+  background-color: #faf5f0;
+  background-image: url('food-background.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
   background-size: contain;
   background-attachment: scroll;
   color: var(--text);
