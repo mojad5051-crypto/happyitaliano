@@ -26,10 +26,10 @@ body {
   margin: 0;
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background-color: #faf5f0;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.32), rgba(255, 250, 245, 0.24)), url('food-background.jpg');
+  background-image: linear-gradient(rgba(255, 255, 255, 0.24), rgba(255, 250, 245, 0.20)), url('food-background.jpg');
   background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
+  background-position: top center;
+  background-size: 100% auto;
   background-attachment: scroll;
   background-blend-mode: normal;
   min-height: 100vh;
@@ -38,16 +38,16 @@ body {
 
 @media (max-width: 960px) {
   body {
-    background-position: center top;
-    background-size: cover;
+    background-position: top center;
+    background-size: 100% auto;
     background-attachment: scroll;
   }
 }
 
 @media (max-width: 760px) {
   body {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.08), rgba(255, 250, 245, 0.08)), url('food-background.jpg');
-    background-size: auto 120%;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.10), rgba(255, 250, 245, 0.10)), url('food-background.jpg');
+    background-size: auto 140%;
     background-position: top center;
     background-attachment: scroll;
   }
