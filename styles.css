@@ -28,8 +28,8 @@ body {
   background-color: #faf5f0;
   background-image: url('food-background.jpg');
   background-repeat: no-repeat;
-  background-position: center center;
-  background-size: contain;
+  background-position: top center;
+  background-size: 20vw auto;
   background-attachment: scroll;
   color: var(--text);
 }
