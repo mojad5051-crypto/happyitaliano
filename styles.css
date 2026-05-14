@@ -529,6 +529,8 @@ iframe {
   font-size: 1.1rem;
   color: var(--text);
 }
+
+.site-footer {
   background: #fff;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
   padding: 1.5rem 0;
@@ -548,6 +550,23 @@ iframe {
   font-size: 0.95rem;
 }
 
+.hero-card {
+  max-width: 28rem;
+  width: 100%;
+}
+
+.hero-links {
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+}
+
+.button {
+  min-width: 0;
+}
+
+.section {
+  padding: 3rem 0;
+}
+
 @media (max-width: 960px) {
   .grid,
   .grid-2,
@@ -562,6 +581,10 @@ iframe {
   .hero {
     padding-top: 3rem;
   }
+
+  .hero-card {
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 760px) {
@@ -570,8 +593,25 @@ iframe {
     justify-content: space-between;
   }
 
-  .nav-toggle {
-    display: inline-flex;
+  .hero {
+    padding-top: 2rem;
+  }
+
+  .hero-copy {
+    gap: 1rem;
+  }
+
+  .hero-links {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .button {
+    width: 100%;
   }
 
   .site-nav {
@@ -586,7 +626,12 @@ iframe {
   }
 
   .site-nav a {
-    padding: 0.7rem 0;
+    padding: 0.85rem 0;
     border-bottom: 1px solid rgba(45, 45, 45, 0.08);
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
   }
 }
