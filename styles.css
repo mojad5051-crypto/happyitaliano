@@ -44,6 +44,15 @@ body {
   }
 }
 
+@media (max-width: 760px) {
+  body {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.08), rgba(255, 250, 245, 0.08)), url('food-background.jpg');
+    background-size: auto 120%;
+    background-position: top center;
+    background-attachment: scroll;
+  }
+}
+
 a {
   color: inherit;
   text-decoration: none;
