@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moderator Application</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0a132b 0%, #071c4d 50%, #042f94 100%);
+            min-height: 100vh;
+        }
+        
+        .card {
+            background: rgba(12, 18, 95, 0.85);
+            border: 1px solid rgba(0, 163, 109, 0.747);
+            border-radius: 8px;
+            box-shadow: 0 0 20px #18b37f, 0 0 40px #055b70;
+            backdrop-filter: blur(10px);
+        }
+        
+        .fading-green {
+            background: linear-gradient(90deg, #00FFAA, #00CCFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 10px #00FFAA, 0 0 30px #00CCFF;
+        }
+        
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .error-message {
+            color: #dc2626;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+        
+        input, textarea, select {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(0, 255, 170, 0.3);
+            color: white;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            border-color: #00FFAA;
+            box-shadow: 0 0 10px #00FFAA;
+        }
+        
+        label {
+            color: #00CCFF;
+        }
+        
+        p {
+            color: #e2e8f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen py-12 px-4">
+        <div class="max-w-4xl mx-auto">
+            <!-- Header -->
+            <div class="card p-6 mb-8 text-center">
+                <h1 class="text-4xl font-bold fading-green mb-2">Moderator Application</h1>
+                <h2 class="text-xl fading-green mb-4">Florida State Roleplay Staff Team</h2>
+                <p class="text-gray-700 leading-relaxed">
+                    Thank you for your interest in joining our moderator team. Please answer all questions honestly and in your own words. AI-generated or copy-pasted answers will be automatically flagged and may result in denial or blacklist.
+                </p>
+            </div>
+
+            <!-- Form -->
+            <form id="applicationForm" autocomplete="off" class="space-y-6">
+                <!-- Page 1: Personal Information -->
+                <div id="personal" class="card p-6">
+                    <h3 class="text-2xl font-semibold fading-green mb-4">Personal Information</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Roblox Username *</label>
+                            <input type="text" name="robloxUsername" id="robloxUsername" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent" placeholder="Your Roblox username">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Discord User ID *</label>
+                            <input type="text" name="discordUserId" id="discordUserId" required pattern="^\d{17,20}$" title="Enter your Discord numeric user ID (17-20 digits)" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent" placeholder="Your Discord user ID">
+                            <p class="text-sm text-gray-500 mt-1">Right-click your Discord profile and select "Copy User ID". This is required for staff to contact you.</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Discord Username (optional)</label>
+                            <input type="text" name="discordUsername" id="discordUsername" pattern="^(.+#\d{4})?$" title="Enter Discord username#1234" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent" placeholder="Username#1234">
+                            <p class="text-sm text-gray-500 mt-1">Your full Discord tag for reference.</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Your Age *</label>
+                            <input type="number" name="age" id="age" required min="13" max="120" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 2: Knowledge Check -->
+                <div id="knowledge" class="card p-6" style="display: none;">
+                    <h3 class="text-2xl font-semibold fading-green mb-4">Server Rules Knowledge Check</h3>
+                    <p class="text-gray-600 mb-6">Define the following terms related to our server rules:</p>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">What is RDM? *</label>
+                            <textarea name="rdm" id="rdm" required rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent" placeholder="Your answer..."></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">What is VDM? *</label>
+                            <textarea name="vdm" id="vdm" required rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent" placeholder="Your answer..."></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">What is NLR? *</label>
+                            <textarea name="nlr" id="nlr" required rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent" placeholder="Your answer..."></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">What is NITRP? *</label>
+                            <textarea name="nitrp" id="nitrp" required rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent" placeholder="Your answer..."></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">What is AA/MA? *</label>
+                            <textarea name="aama" id="aama" required rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent" placeholder="Your answer..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 3: Scenario Responses -->
+                <div id="scenario" class="card p-6" style="display: none;">
+                    <h3 class="text-2xl font-semibold fading-green mb-4">Scenario Responses</h3>
+                    <p class="text-gray-600 mb-6">Answer the following hypothetical scenarios as if you were a moderator:</p>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Scenario 1: Little G kills a player for fun what is his punishment and how would you handle it? (3 sentences required) *</label>
+                            <textarea name="scenario1" id="scenario1" required rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent" placeholder="Your response..."></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Scenario 2: big tom shoots at a car for fun and it go up in flames what is the appropriate punishment and how would you handle it? (3 sentences required) *</label>
+                            <textarea name="scenario2" id="scenario2" required rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent" placeholder="Your response..."></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Scenario 3: You notice another staff member abusing their powers. What do you do? (3 sentences required) *</label>
+                            <textarea name="scenario3" id="scenario3" required rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent" placeholder="Your response..."></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Scenario 4: A player is reporting harassment from another player. How do you handle it? (3 sentences required) *</label>
+                            <textarea name="scenario4" id="scenario4" required rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent" placeholder="Your response..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 4: Agreements -->
+                <div id="agreement" class="card p-6" style="display: none;">
+                    <h3 class="text-2xl font-semibold fading-green mb-4">Agreements & Policies</h3>
+                    <div class="space-y-4">
+                        <div class="border border-yellow-200 bg-yellow-50 p-4 rounded-lg">
+                            <label class="flex items-start">
+                                <input type="checkbox" name="aiAgreement" id="aiAgreement" value="Yes" class="mt-1 rounded">
+                                <span class="ml-3">
+                                    <span class="block font-medium text-gray-900">I confirm that I have written all answers in my own words and have not used AI or copy-pasted content. *</span>
+                                    <span class="text-sm text-gray-600">AI-detected answers will result in automatic denial or blacklist.</span>
+                                </span>
+                            </label>
+                        </div>
+
+                        <div class="border border-blue-200 bg-blue-50 p-4 rounded-lg">
+                            <label class="flex items-start">
+                                <input type="checkbox" name="rushAgreement" id="rushAgreement" value="Yes" class="mt-1 rounded">
+                                <span class="ml-3">
+                                    <span class="block font-medium text-gray-900">I understand that staff positions cannot be rushed and the acceptance process may take time. *</span>
+                                    <span class="text-sm text-gray-600">We carefully review all applications to ensure quality staff members.</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Page 5: Additional Information -->
+                <div id="additional" class="card p-6" style="display: none;">
+                    <h3 class="text-2xl font-semibold fading-green mb-4">Additional Information</h3>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Is there anything else you'd like us to know?</label>
+                        <textarea name="additionalInfo" id="additionalInfo" rows="6" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent" placeholder="Optional: Tell us anything else relevant to your application..."></textarea>
+                        <p class="text-xs text-gray-500 mt-1">This field is optional.</p>
+                    </div>
+                </div>
+
+                <!-- Page 6: Review & Submit -->
+                <div id="submit" class="card p-6" style="display: none;">
+                    <h3 class="text-2xl font-semibold fading-green mb-4">Review Your Application</h3>
+                    <div class="bg-gray-50 p-4 rounded-lg mb-6 max-h-96 overflow-y-auto">
+                        <dl class="space-y-3">
+                            <div>
+                                <dt class="font-semibold text-gray-700">Roblox Username:</dt>
+                                <dd class="text-gray-600" id="reviewRoblox">-</dd>
+                            </div>
+                            <div>
+                                <dt class="font-semibold text-gray-700">Discord Username:</dt>
+                                <dd class="text-gray-600" id="reviewDiscord">-</dd>
+                            </div>
+                            <div>
+                                <dt class="font-semibold text-gray-700">Age:</dt>
+                                <dd class="text-gray-600" id="reviewAge">-</dd>
+                            </div>
+                        </dl>
+                    </div>
+                    <p class="text-gray-600 mb-4">Please review your information above. If everything looks correct, click Submit Application below.</p>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="flex justify-between gap-4">
+                    <button type="button" id="backBtn" class="px-6 py-2 bg-gray-300 text-gray-800 rounded-lg font-medium hover:bg-gray-400" style="display: none;">Back</button>
+                    <button type="button" id="nextBtn" class="px-6 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700">Next</button>
+                    <button type="button" id="submitBtn" class="px-6 py-2 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-700" style="display: none;">Submit Application</button>
+                </div>
+                <div id="errorContainer"></div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        discord: '#7289da',
+                        purple: '#9b59b6',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script>
+        // Application API endpoints
+        const API_URLS = [
+            'https://mojad-bot-production-3ef2.up.railway.app/apply',
+            'http://localhost:8080/apply'
+        ];
+
+        async function resolveApiUrl() {
+            // If the page is opened from file://, use local backend if available.
+            if (window.location.protocol === 'file:') {
+                return API_URLS[1];
+            }
+
+            for (const url of API_URLS) {
+                try {
+                    const response = await fetch(url, {
+                        method: 'OPTIONS',
+                        mode: 'cors',
+                        cache: 'no-cache',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    });
+
+                    if (response.ok || response.status === 204) {
+                        return url;
+                    }
+                } catch (err) {
+                    // ignore and try next endpoint
+                }
+            }
+
+            return API_URLS[0];
+        }
+
+        let currentPage = 0;
+        const pages = ['personal', 'knowledge', 'scenario', 'agreement', 'additional', 'submit'];
+        const totalPages = pages.length;
+
+        function showPage(index) {
+            pages.forEach((id, i) => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.style.display = i === index ? 'block' : 'none';
+                }
+            });
+
+            // Update button visibility
+            const backBtn = document.getElementById('backBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const submitBtn = document.getElementById('submitBtn');
+
+            backBtn.style.display = index > 0 ? 'block' : 'none';
+            nextBtn.style.display = index < totalPages - 1 ? 'block' : 'none';
+            submitBtn.style.display = index === totalPages - 1 ? 'block' : 'none';
+
+            // Update review page
+            if (index === totalPages - 1) {
+                document.getElementById('reviewRoblox').textContent = document.getElementById('robloxUsername').value || '-';
+                document.getElementById('reviewDiscord').textContent = document.getElementById('discordUsername').value || '-';
+                document.getElementById('reviewAge').textContent = document.getElementById('age').value || '-';
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function nextPage() {
+            if (currentPage < pages.length - 1) {
+                // Validate current page before moving
+                if (!validatePage(currentPage)) {
+                    showError('Please fill in all required fields on this page.');
+                    return;
+                }
+                currentPage++;
+                showPage(currentPage);
+            }
+        }
+
+        function prevPage() {
+            if (currentPage > 0) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        }
+
+        function validatePage(pageIndex) {
+            const requiredFields = document.querySelectorAll(`#${pages[pageIndex]} input[required], #${pages[pageIndex]} textarea[required]`);
+            for (let field of requiredFields) {
+                if (!field.value.trim()) {
+                    return false;
+                }
+            }
+
+            if (pageIndex === 0) {
+                const discordField = document.getElementById('discordUserId');
+                const discordPattern = /^\d{17,20}$/;
+                if (!discordPattern.test(discordField.value.trim())) {
+                    showError('Discord User ID must be a valid numeric ID (17-20 digits).');
+                    return false;
+                }
+            }
+
+            // Special validation for checkboxes on agreement page
+            if (pageIndex === 3) { // agreement page
+                const aiAgreement = document.getElementById('aiAgreement').checked;
+                const rushAgreement = document.getElementById('rushAgreement').checked;
+                if (!aiAgreement || !rushAgreement) {
+                    showError('You must agree to both statements to continue.');
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        function showError(message) {
+            const errorContainer = document.getElementById('errorContainer');
+            errorContainer.innerHTML = `<div class="error-message" style="color: #dc2626; background: #fee2e2; padding: 12px; border-radius: 6px; margin-top: 12px;">${message}</div>`;
+            setTimeout(() => {
+                errorContainer.innerHTML = '';
+            }, 5000);
+        }
+
+        async function submitApplication() {
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.textContent;
+
+            // Validate all required fields
+            const missingFields = [];
+            const requiredInputs = document.querySelectorAll('input[required], textarea[required]');
+            for (let input of requiredInputs) {
+                if (!input.value.trim()) {
+                    const label = input.previousElementSibling ? input.previousElementSibling.textContent.replace(' *', '') : input.name;
+                    missingFields.push(label);
+                }
+            }
+            const aiAgreement = document.getElementById('aiAgreement');
+            const rushAgreement = document.getElementById('rushAgreement');
+            if (!aiAgreement.checked) missingFields.push('AI Agreement');
+            if (!rushAgreement.checked) missingFields.push('Rush Agreement');
+
+            if (missingFields.length > 0) {
+                const detailedMissing = missingFields.map(field => `${field} - please go back and fill it`).join(', ');
+                showError(`The following fields are not filled: ${detailedMissing}`);
+                return;
+            }
+
+            // Validate age
+            const age = parseInt(document.getElementById('age').value);
+            if (age < 13) {
+                showError('You must be at least 13 years old to apply.');
+                return;
+            }
+
+            // Validate Discord ID
+            const discordId = document.getElementById('discordUserId').value.trim();
+            if (!/^\d{17,20}$/.test(discordId)) {
+                showError('Discord User ID must be a valid numeric ID (17-20 digits).');
+                return;
+            }
+
+            // Prepare form data
+            const discordUsernamePayload = document.getElementById('discordUsername').value.trim() || document.getElementById('discordUserId').value.trim();
+            const formData = {
+                robloxUsername: document.getElementById('robloxUsername').value,
+                discordUserId: document.getElementById('discordUserId').value,
+                discordUsername: discordUsernamePayload,
+                age: age,
+                rdm: document.getElementById('rdm').value,
+                vdm: document.getElementById('vdm').value,
+                nlr: document.getElementById('nlr').value,
+                nitrp: document.getElementById('nitrp').value,
+                aama: document.getElementById('aama').value,
+                scenario1: document.getElementById('scenario1').value,
+                scenario2: document.getElementById('scenario2').value,
+                scenario3: document.getElementById('scenario3').value,
+                scenario4: document.getElementById('scenario4').value,
+                aiAgreement: document.getElementById('aiAgreement').checked ? 'Yes' : 'No',
+                rushAgreement: document.getElementById('rushAgreement').checked ? 'Yes' : 'No',
+                additional: document.getElementById('additionalInfo').value,
+                submittedAt: new Date().toISOString()
+            };
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            const API_URL = await resolveApiUrl();
+            if (API_URL === API_URLS[1] && window.location.protocol !== 'file:') {
+                showError('Railway backend is down. Using local application server fallback.');
+            }
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    mode: 'cors',
+                    cache: 'no-cache',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                let result;
+                try {
+                    result = await response.json();
+                } catch (parseError) {
+                    const text = await response.text();
+                    throw new Error(`HTTP ${response.status}: ${text}`);
+                }
+
+                if (response.ok && result.success) {
+                    showError('✓ Application submitted successfully! Our team will review your application soon.');
+                    // Reset form
+                    setTimeout(() => {
+                        document.getElementById('applicationForm').reset();
+                        currentPage = 0;
+                        showPage(0);
+                    }, 2000);
+                } else {
+                    showError('Failed to submit application: ' + (result.error || `HTTP ${response.status}`));
+                }
+            } catch (error) {
+                console.error('Submission error:', error);
+                showError('Error submitting application: ' + error.message);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        }
+
+        // Event listeners
+        document.getElementById('nextBtn').addEventListener('click', nextPage);
+        document.getElementById('backBtn').addEventListener('click', prevPage);
+        document.getElementById('submitBtn').addEventListener('click', submitApplication);
+
+        // Initialize
+        showPage(0);
+    </script>
+</body>
+</html>
